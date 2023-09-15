@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css"
+      integrity="sha512-Velp0ebMKjcd9RiCoaHhLXkR1sFoCCWXNp6w4zj1hfMifYB5441C+sKeBl/T/Ka6NjBiRfBBQRaQq65ekYz3UQ=="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    />
+    <link rel="stylesheet" href="style/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #db4437"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">Peta Riau</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#home"
+                >Home</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div id="map-container">
+      <h1 class="map-title">Peta Indonesia</h1>
+      <div id="map" style="height: 700px"></div>
+    </div>
+    <div id="map" style="height: 700px"></div>
+
+    <footer class="text-center text-white" style="background-color: #db4437">
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: #db4437">
+        &copy Norhayati
+      </div>
+      <!-- Copyright -->
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+      var map = L.map("map").setView([-2.5489, 118.0149], 5);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+      var markerMedan = L.marker([3.5897, 98.673]).addTo(map);
+      markerMedan.bindPopup("<b>Medan</b>").openPopup();
+
+      var markerPekanbaru = L.marker([0.507067, 101.447779]).addTo(map);
+      markerPekanbaru.bindPopup("<b>Pekanbaru</b>").openPopup();
+
+      var markerPalembang = L.marker([-2.9761, 104.7754]).addTo(map);
+      markerPalembang.bindPopup("<b>Palembang</b>").openPopup();
+
+      var markerBandarLampung = L.marker([-5.4026, 105.258]).addTo(map);
+      markerBandarLampung.bindPopup("<b>Bandar Lampung</b>").openPopup();
+
+      var southWest = L.latLng(-11.0, 94.0);
+      var northEast = L.latLng(6.0, 141.0);
+      var bounds = L.latLngBounds(southWest, northEast);
+      map.setMaxBounds(bounds);
+      map.on("drag", function () {
+        map.panInsideBounds(bounds, { animate: false });
+      });
+    </script>
+  </body>
+</html>
